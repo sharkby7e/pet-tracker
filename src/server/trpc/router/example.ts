@@ -7,6 +7,7 @@ export const exampleRouter = t.router({
     .query(({ input }) => {
       return {
         greeting: `Hello ${input?.text ?? "world"}`,
+        secondHello: `You are named ${input?.text ?? "You are a cat"}`,
       };
     }),
   getAll: t.procedure.query(({ ctx }) => {

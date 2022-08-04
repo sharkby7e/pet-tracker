@@ -1,9 +1,10 @@
 import type { NextPage } from "next";
+import { signIn } from "next-auth/react";
 import Head from "next/head";
 import { trpc } from "../utils/trpc";
 
 const Home: NextPage = () => {
-  const hello = trpc.proxy.example.hello.useQuery({ text: "from tRPC" });
+  const hello = trpc.proxy.example.hello.useQuery({ text: "Basil" });
 
   return (
     <>
@@ -40,8 +41,10 @@ const Home: NextPage = () => {
           />
         </div>
         <div className="flex items-center justify-center w-full pt-6 text-2xl text-blue-500">
-          {hello.data ? <p>{hello.data.greeting}</p> : <p>Loading..</p>}
+          {hello.data ? <div>{hello.data.greeting}</div> : <p>Loading..</p>}
+          {hello.data ? <div>{hello.data.secondHello}</div> : <p>Loading..</p>}
         </div>
+        <button onClick={() => signIn()}>Click here to sign in</button>
       </main>
     </>
   );
