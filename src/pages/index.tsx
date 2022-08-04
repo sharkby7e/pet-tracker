@@ -1,10 +1,11 @@
 import type { NextPage } from "next";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Head from "next/head";
 import { trpc } from "../utils/trpc";
 
 const Home: NextPage = () => {
   const hello = trpc.proxy.example.hello.useQuery({ text: "Basil" });
+  const { data: session } = useSession();
 
   return (
     <>
@@ -44,7 +45,11 @@ const Home: NextPage = () => {
           {hello.data ? <div>{hello.data.greeting}</div> : <p>Loading..</p>}
           {hello.data ? <div>{hello.data.secondHello}</div> : <p>Loading..</p>}
         </div>
-        <button onClick={() => signIn()}>Click here to sign in</button>
+        {!session ? (
+          <button onClick={() => signIn()}>Click here to sign in</button>
+        ) : (
+          <p>You are signed in</p>
+        )}
       </main>
     </>
   );
