@@ -42,14 +42,20 @@ const Home: NextPage = () => {
           />
         </div>
         <div className="flex items-center justify-center w-full pt-6 text-2xl text-blue-500">
-          {hello.data ? <div>{hello.data.greeting}</div> : <p>Loading..</p>}
           {hello.data ? <div>{hello.data.secondHello}</div> : <p>Loading..</p>}
         </div>
-        {!session ? (
-          <button onClick={() => signIn()}>Click here to sign in</button>
-        ) : (
-          <p>You are signed in</p>
-        )}
+        <div className="flex items-center justify-center w-full pt-6 text-2xl text-blue-500 mb-8">
+          {hello.data ? <div>{hello.data.greeting}</div> : <p>Loading..</p>}
+        </div>
+        <div>
+          {!session ? (
+            <button className="rounded-xl btn-blue" onClick={() => signIn()}>
+              Click here to sign in
+            </button>
+          ) : (
+            <p>You are signed in</p>
+          )}
+        </div>
       </main>
     </>
   );
