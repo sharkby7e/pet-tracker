@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { signIn, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import Head from "next/head";
 import { trpc } from "../utils/trpc";
 
@@ -49,11 +49,19 @@ const Home: NextPage = () => {
         </div>
         <div>
           {!session ? (
-            <button className="rounded-xl btn-blue" onClick={() => signIn()}>
-              Click here to sign in
+            <button
+              className="rounded-xl p-10  btn-primary"
+              onClick={() => signIn()}
+            >
+              Sign In
             </button>
           ) : (
-            <p>You are signed in</p>
+            <button
+              className="rounded-xl p-10 btn-primary"
+              onClick={() => signOut()}
+            >
+              Sign Out
+            </button>
           )}
         </div>
       </main>
