@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React from "react";
 
 type Props = {
   name: string;
@@ -6,11 +6,7 @@ type Props = {
   children?: React.ReactNode;
 };
 
-const Biography: FunctionComponent<Props> = ({
-  name,
-  bio,
-  children,
-}: Props) => {
+const Biography: React.FC<Props> = ({ name, bio, children }: Props) => {
   return (
     <div>
       <h1>This is the story of a cat named...{name}</h1>
