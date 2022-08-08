@@ -6,8 +6,10 @@ export const exampleRouter = t.router({
     .input(z.object({ text: z.string().nullish() }).nullish())
     .query(({ input }) => {
       return {
-        greeting: `Hello ${input?.text ?? "world"}  `,
-        secondHello: `You are named ${input?.text ?? "You are a cat"}`,
+        greeting: `Hello ${input?.text ?? "world"}!`,
+        secondHello: `How was you visit to the Database, ${
+          input?.text ?? "You are a cat"
+        }?`,
       };
     }),
   getAll: t.procedure.query(({ ctx }) => {
